@@ -15,6 +15,12 @@
 		E244EA401E4865840019D7D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E244EA3E1E4865840019D7D6 /* LaunchScreen.storyboard */; };
 		E244EA4B1E4865840019D7D6 /* SmartRefrigeratorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244EA4A1E4865840019D7D6 /* SmartRefrigeratorAppTests.swift */; };
 		E244EA561E4865840019D7D6 /* SmartRefrigeratorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244EA551E4865840019D7D6 /* SmartRefrigeratorAppUITests.swift */; };
+		E244EA651E4868FD0019D7D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA631E4868FD0019D7D6 /* Realm.framework */; };
+		E244EA661E4868FD0019D7D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA641E4868FD0019D7D6 /* RealmSwift.framework */; };
+		E244EA671E4869440019D7D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA631E4868FD0019D7D6 /* Realm.framework */; };
+		E244EA681E4869440019D7D6 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA631E4868FD0019D7D6 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E244EA691E4869440019D7D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA641E4868FD0019D7D6 /* RealmSwift.framework */; };
+		E244EA6A1E4869440019D7D6 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA641E4868FD0019D7D6 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E244EA6B1E4869440019D7D6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E244EA6A1E4869440019D7D6 /* RealmSwift.framework in Embed Frameworks */,
+				E244EA681E4869440019D7D6 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E244EA2F1E4865840019D7D6 /* SmartRefrigeratorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartRefrigeratorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E244EA321E4865840019D7D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +70,8 @@
 		E244EA511E4865840019D7D6 /* SmartRefrigeratorAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartRefrigeratorAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E244EA551E4865840019D7D6 /* SmartRefrigeratorAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartRefrigeratorAppUITests.swift; sourceTree = "<group>"; };
 		E244EA571E4865840019D7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E244EA631E4868FD0019D7D6 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		E244EA641E4868FD0019D7D6 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +79,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E244EA671E4869440019D7D6 /* Realm.framework in Frameworks */,
+				E244EA661E4868FD0019D7D6 /* RealmSwift.framework in Frameworks */,
+				E244EA691E4869440019D7D6 /* RealmSwift.framework in Frameworks */,
+				E244EA651E4868FD0019D7D6 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +132,8 @@
 				E244EA3C1E4865840019D7D6 /* Assets.xcassets */,
 				E244EA3E1E4865840019D7D6 /* LaunchScreen.storyboard */,
 				E244EA411E4865840019D7D6 /* Info.plist */,
+				E244EA631E4868FD0019D7D6 /* Realm.framework */,
+				E244EA641E4868FD0019D7D6 /* RealmSwift.framework */,
 				E244EA391E4865840019D7D6 /* SmartRefrigeratorApp.xcdatamodeld */,
 			);
 			path = SmartRefrigeratorApp;
@@ -138,6 +167,8 @@
 				E244EA2B1E4865840019D7D6 /* Sources */,
 				E244EA2C1E4865840019D7D6 /* Frameworks */,
 				E244EA2D1E4865840019D7D6 /* Resources */,
+				E244EA6B1E4869440019D7D6 /* Embed Frameworks */,
+				E244EA6C1E48696C0019D7D6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -259,6 +290,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E244EA6C1E48696C0019D7D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E244EA2B1E4865840019D7D6 /* Sources */ = {
@@ -418,6 +465,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C58JY87RHS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmartRefrigeratorApp",
+				);
 				INFOPLIST_FILE = SmartRefrigeratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pjHo.SmartRefrigeratorApp;
@@ -431,6 +482,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C58JY87RHS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmartRefrigeratorApp",
+				);
 				INFOPLIST_FILE = SmartRefrigeratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pjHo.SmartRefrigeratorApp;

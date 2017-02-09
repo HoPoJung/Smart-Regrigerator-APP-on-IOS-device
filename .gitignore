@@ -1,9 +1,12 @@
 # Mac
 #
 .DS_Store
-.plist
+*.plist
 # Xcode
 #
+SmartRefrigeratorApp/Info.plist
+SmartRefrigeratorAppTests/Info.plist
+SmartRefrigeratorAppUITests/Info.plist
 SmartRegrigeratorApp.xcodeproj/
 project.pbxproj
 build/

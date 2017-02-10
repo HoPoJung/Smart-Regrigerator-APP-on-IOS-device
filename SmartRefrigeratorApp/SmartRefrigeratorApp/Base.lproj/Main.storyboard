@@ -60,6 +60,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mIQ-eR-vFx" id="Jy7-07-Mqi"/>
+                                    <outlet property="delegate" destination="mIQ-eR-vFx" id="2CZ-ro-21n"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

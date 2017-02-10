@@ -227,7 +227,7 @@
 				TargetAttributes = {
 					E244EA2E1E4865840019D7D6 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = P9FGPZBBW2;
+						DevelopmentTeam = C58JY87RHS;
 						ProvisioningStyle = Automatic;
 					};
 					E244EA451E4865840019D7D6 = {
@@ -464,14 +464,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P9FGPZBBW2;
+				DEVELOPMENT_TEAM = C58JY87RHS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SmartRefrigeratorApp",
 				);
 				INFOPLIST_FILE = SmartRefrigeratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ypHsu.SmartRefrigeratorApp;
+				PRODUCT_BUNDLE_IDENTIFIER = pjHo.SmartRefrigeratorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -481,14 +481,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P9FGPZBBW2;
+				DEVELOPMENT_TEAM = C58JY87RHS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SmartRefrigeratorApp",
 				);
 				INFOPLIST_FILE = SmartRefrigeratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ypHsu.SmartRefrigeratorApp;
+				PRODUCT_BUNDLE_IDENTIFIER = pjHo.SmartRefrigeratorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

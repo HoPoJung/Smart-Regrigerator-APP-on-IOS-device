@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tableView = UITableView(frame: view.bounds)
+        let tableView = UITableView()
         view.addSubview(tableView)
         self.foodListTableView = tableView
         

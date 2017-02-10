@@ -8,20 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var foodListTableView: UITableView!
     var foodListContent = ["apple", "meat"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tableView = UITableView(frame: view.bounds)
+        view.addSubview(tableView)
+        self.foodListTableView = tableView
+        
+        tableView.dataSource = self
+        tableView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 3//foodListContent.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 2//foodListContent.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtindexPath indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
     
         let Cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "foodCell")
         Cell.textLabel?.text = "test"

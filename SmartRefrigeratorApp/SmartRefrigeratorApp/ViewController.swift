@@ -25,13 +25,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 2//foodListContent.count
+        return foodListContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
     
         let Cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "foodCell")
-        Cell.textLabel?.text = "test"
+        Cell.textLabel?.text = foodListContent[indexPath.row]
         return Cell
     }
 

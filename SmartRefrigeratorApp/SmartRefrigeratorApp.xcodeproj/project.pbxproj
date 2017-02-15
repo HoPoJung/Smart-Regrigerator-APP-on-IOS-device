@@ -21,6 +21,7 @@
 		E244EA681E4869440019D7D6 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA631E4868FD0019D7D6 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E244EA691E4869440019D7D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA641E4868FD0019D7D6 /* RealmSwift.framework */; };
 		E244EA6A1E4869440019D7D6 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E244EA641E4868FD0019D7D6 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E44E87211E536BFF00C5E767 /* SpeechAutoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E87201E536BFF00C5E767 /* SpeechAutoInputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		E244EA571E4865840019D7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E244EA631E4868FD0019D7D6 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		E244EA641E4868FD0019D7D6 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		E44E87201E536BFF00C5E767 /* SpeechAutoInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechAutoInputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				E244EA321E4865840019D7D6 /* AppDelegate.swift */,
 				E244EA341E4865840019D7D6 /* ViewController.swift */,
 				E244EA361E4865840019D7D6 /* Main.storyboard */,
+				E44E87201E536BFF00C5E767 /* SpeechAutoInputViewController.swift */,
 				E244EA3C1E4865840019D7D6 /* Assets.xcassets */,
 				E244EA3E1E4865840019D7D6 /* LaunchScreen.storyboard */,
 				E244EA411E4865840019D7D6 /* Info.plist */,
@@ -314,6 +317,7 @@
 			files = (
 				E244EA351E4865840019D7D6 /* ViewController.swift in Sources */,
 				E244EA3B1E4865840019D7D6 /* SmartRefrigeratorApp.xcdatamodeld in Sources */,
+				E44E87211E536BFF00C5E767 /* SpeechAutoInputViewController.swift in Sources */,
 				E244EA331E4865840019D7D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,10 +22,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let tableView = UITableView()
         view.addSubview(tableView)
         self.foodListTableView = tableView
-        
+        if foodListContent.count != 0 {
+            print(foodListContent[1][1])
+        }
         tableView.dataSource = self
         tableView.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -45,6 +46,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         foodInfo.append(foodQuantity.text!)
         foodInfo.append(foodExpireDate.text!)
         foodListContent.append(foodInfo)
+        foodName.text = ""
+        foodQuantity.text = ""
+        foodExpireDate.text = ""
     }
     
     @IBAction func saveAndList(_ sender: Any) {

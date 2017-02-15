@@ -53,7 +53,7 @@ class SpeechAutoInputViewController: UIViewController, SFSpeechRecognizerDelegat
             audioEngine.stop()
             recognitionRequest?.endAudio()
             recordButton.isEnabled = false
-            recordButton.setTitle("Start recording...", for: .normal)
+            recordButton.setTitle("Record", for: .normal)
         }
         else {
             startRecording()

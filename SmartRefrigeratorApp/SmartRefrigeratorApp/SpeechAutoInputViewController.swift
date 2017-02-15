@@ -17,6 +17,7 @@ class SpeechAutoInputViewController: UIViewController, SFSpeechRecognizerDelegat
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    private var textPool: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,7 @@ class SpeechAutoInputViewController: UIViewController, SFSpeechRecognizerDelegat
         }
         else {
             startRecording()
+            self.textPool = ""
             recordButton.setTitle("Stop recording", for: .normal)
         }
     }
@@ -93,9 +95,15 @@ class SpeechAutoInputViewController: UIViewController, SFSpeechRecognizerDelegat
             var isFinal = false
             
             if result != nil {
-                
-                self.recordText.text = result?.bestTranscription.formattedString
+                // New voice input store in newText, and extract the specific new words by separation of the old text (stored in textPool)
+                // Pass the new words to func () for more information
+                let newText = result?.bestTranscription.formattedString
+                self.recordText.text = newText
                 isFinal = (result?.isFinal)!
+                let newWords = newText?.components(separatedBy: (self.textPool+" "))
+                print(newWords!.last!)
+//                print(self.textPool)
+                self.textPool = newText!
             }
             
             if error != nil || isFinal {

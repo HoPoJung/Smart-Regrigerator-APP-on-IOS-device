@@ -55,7 +55,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wgC-xw-A3W" id="TRB-U2-W1j">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -166,7 +166,7 @@
         <!--View Controller-->
         <scene sceneID="30n-4c-7vG">
             <objects>
-                <viewController id="HJs-YG-5DD" sceneMemberID="viewController">
+                <viewController id="HJs-YG-5DD" customClass="ViewController" customModule="SmartRefrigeratorApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1oF-ca-bpA"/>
                         <viewControllerLayoutGuide type="bottom" id="dTj-OD-J9i"/>
@@ -221,15 +221,27 @@
                                 <rect key="frame" x="68" y="420" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save and Next"/>
+                                <connections>
+                                    <action selector="saveAndNext:" destination="HJs-YG-5DD" eventType="touchUpInside" id="rbN-Hi-xPC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2d-r0-0Ob">
                                 <rect key="frame" x="234" y="420" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save and List"/>
+                                <connections>
+                                    <action selector="saveAndList:" destination="HJs-YG-5DD" eventType="touchUpInside" id="rCd-H4-yU3"/>
+                                    <segue destination="mIQ-eR-vFx" kind="show" id="eox-YZ-P7R"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="foodExpireDate" destination="hzI-fu-FDh" id="SJ8-Jx-RAC"/>
+                        <outlet property="foodName" destination="lQ4-XY-GLd" id="Ug5-MA-trY"/>
+                        <outlet property="foodQuantity" destination="qft-f4-HZ2" id="Bsc-fw-L2s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Th-yb-gJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

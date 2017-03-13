@@ -39,4 +39,3 @@ class UnitKeyword: Keyword {
 class QuantityKeyword: Keyword {
     var quantityName: String?
 }
-

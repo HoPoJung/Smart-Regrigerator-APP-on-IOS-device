@@ -257,7 +257,13 @@
                                     <constraint firstAttribute="width" constant="375" id="ZaL-CC-EAT"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="FTV-Jg-esi"/>
+                                    <navigationItem title="Title" id="FTV-Jg-esi">
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="6zx-Gf-epQ">
+                                            <connections>
+                                                <action selector="editTableButton:" destination="JTD-R1-DC1" id="QlL-BJ-kvl"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GId-5d-6fB">
@@ -297,6 +303,7 @@
                     <connections>
                         <outlet property="existKeywordTable" destination="GId-5d-6fB" id="TOi-3q-8H4"/>
                         <outlet property="keywordTextField" destination="lQx-7u-5Iv" id="SnB-xj-SEf"/>
+                        <outlet property="rightBarButtonItem" destination="6zx-Gf-epQ" id="mIy-U4-2IN"/>
                         <outlet property="typePicker" destination="MGd-Jo-m28" id="fQg-a7-EXu"/>
                     </connections>
                 </viewController>

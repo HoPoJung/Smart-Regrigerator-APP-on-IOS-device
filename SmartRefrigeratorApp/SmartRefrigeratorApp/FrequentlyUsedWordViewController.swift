@@ -14,6 +14,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var existKeywordTable: UITableView!
+    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     
     let typePickerData = ["Food", "Unit"]
     
@@ -46,7 +47,21 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         }
     }
     @IBAction func ExitButton(_ sender: Any) {
+        writeIntoRealm()
         dismiss(animated: true, completion: nil)
+    }
+    @IBAction func editTableButton(_ sender: Any) {
+        if existKeywordTable.isEditing {
+            existKeywordTable.setEditing(false, animated: false)
+            rightBarButtonItem.title = "Edit"
+        }
+        else {
+            existKeywordTable.setEditing(true, animated: true)
+            rightBarButtonItem.title = "Done"
+        }
+        DispatchQueue.main.async {
+            self.existKeywordTable.reloadData()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,6 +97,55 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         cell.textLabel?.text = self.keywordArray[indexPath.row].name! + " (" + self.keywordArray[indexPath.row].type! + ")"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            self.keywordArray.remove(at: indexPath.row)
+            DispatchQueue.main.async {
+                self.existKeywordTable.reloadData()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let tmpKeywordItem = self.keywordArray[sourceIndexPath.row]
+        if (sourceIndexPath.row < destinationIndexPath.row) {
+            for item in sourceIndexPath.row...destinationIndexPath.row-1 {
+                self.keywordArray[item] = self.keywordArray[item+1]
+            }
+        }
+        else {
+            for item in (destinationIndexPath.row+1...sourceIndexPath.row).reversed() {
+                self.keywordArray[item] = self.keywordArray[item-1]
+            }
+        }
+        self.keywordArray[destinationIndexPath.row] = tmpKeywordItem
+    }
+    
+    func writeIntoRealm() {
+        let realm = try! Realm()
+        try! realm.write {
+            for item in keywordArray {
+                print("Adding: " + item.name!)
+                if (item.type == "Food") {
+                    let newFoodKeyword = FoodKeyword()
+                    newFoodKeyword.foodName = item.name
+                    newFoodKeyword.priority = 1
+                    realm.add(newFoodKeyword)
+                }
+                else {
+                    let newUnitKeyword = UnitKeyword()
+                    newUnitKeyword.unitName = item.name
+                    newUnitKeyword.priority = 1
+                    realm.add(newUnitKeyword)
+                }
+            }
+        }
     }
     
     /*

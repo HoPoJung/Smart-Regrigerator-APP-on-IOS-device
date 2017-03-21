@@ -17,7 +17,7 @@ class Food: Object {
     dynamic var expirationDate: Date?
 }
 
-class User: Object {
+class User: Object {    
     var userName: String?
     let foodList = List<Food>()
 }

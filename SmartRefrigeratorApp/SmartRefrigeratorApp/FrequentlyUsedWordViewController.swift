@@ -34,6 +34,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         keywordTextField.delegate = self
         readFromRealm()
 //        keywordArray.append(newKeyword)
+        self.existKeywordTable.reloadData()
     }
 
     @IBAction func AddButton(_ sender: Any) {
@@ -129,7 +130,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     func readFromRealm() {
         let realm = try! Realm()
         let oldKeywordList = realm.objects(Keyword.self).filter("priority < 10")
-        for item in 0...oldKeywordList.count {
+        for item in 0...(oldKeywordList.count-1) {
             let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type)
             self.keywordArray.append(oldKeyword)
         }

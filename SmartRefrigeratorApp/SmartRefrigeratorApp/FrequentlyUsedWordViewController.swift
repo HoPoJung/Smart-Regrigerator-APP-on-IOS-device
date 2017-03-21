@@ -32,6 +32,8 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         existKeywordTable.dataSource = self
         existKeywordTable.delegate = self
         keywordTextField.delegate = self
+        let realm = try! Realm()
+        
         keywordArray.append(newKeyword)
     }
 
@@ -41,9 +43,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
             keywordTextField.text = ""
             self.keywordArray.append(newKeyword)
             print("Add new keyword: " + self.newKeyword.name! + ", type: " + self.newKeyword.type!)
-            DispatchQueue.main.async {
-                self.existKeywordTable.reloadData()
-            }
+            self.existKeywordTable.reloadData()
         }
     }
     @IBAction func ExitButton(_ sender: Any) {

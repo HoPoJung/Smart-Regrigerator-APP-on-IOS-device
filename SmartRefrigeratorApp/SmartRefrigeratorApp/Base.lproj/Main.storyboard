@@ -58,11 +58,7 @@
                                 <items>
                                     <navigationItem title="Title" id="GjE-On-h2r">
                                         <barButtonItem key="leftBarButtonItem" title="Setup" style="done" id="0v4-2z-LST"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yIm-7y-0v4">
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="szB-we-cRR"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yIm-7y-0v4"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -71,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="foodListTableView" destination="bgc-MS-esM" id="9Y6-zT-3Nl"/>
+                        <segue destination="SK8-DI-V86" kind="show" id="2Wa-WI-xh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="za4-o8-66N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,6 +111,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Food Name View Controller-->
+        <scene sceneID="vrg-pE-ndG">
+            <objects>
+                <viewController id="SK8-DI-V86" customClass="FoodNameViewController" customModule="SmartRefrigeratorApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ntf-u8-0BW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wyc-fS-lSt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z6A-As-m6M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDL-i6-fww">
+                                <rect key="frame" x="49" y="64" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy4-mG-25A">
+                                <rect key="frame" x="213" y="64" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23l-3A-ViQ">
+                                <rect key="frame" x="49" y="201" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XC0-iX-0eD">
+                                <rect key="frame" x="213" y="201" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTQ-pS-KWe">
+                                <rect key="frame" x="49" y="331" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I46-U8-YGd">
+                                <rect key="frame" x="213" y="331" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMk-4E-j2n">
+                                <rect key="frame" x="49" y="488" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1f-UU-JAZ">
+                                <rect key="frame" x="213" y="488" width="98" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="foodName_1" destination="FDL-i6-fww" id="71e-Fz-fUg"/>
+                        <outlet property="foodName_2" destination="Hy4-mG-25A" id="gB2-3N-9Li"/>
+                        <outlet property="foodName_3" destination="23l-3A-ViQ" id="eFt-ZG-lEH"/>
+                        <outlet property="foodName_4" destination="XC0-iX-0eD" id="IzI-n0-TDu"/>
+                        <outlet property="foodName_5" destination="WTQ-pS-KWe" id="5mv-JX-LRC"/>
+                        <outlet property="foodName_6" destination="I46-U8-YGd" id="Enf-KJ-fPR"/>
+                        <outlet property="foodName_7" destination="zMk-4E-j2n" id="Tw8-V4-i9k"/>
+                        <outlet property="foodName_8" destination="q1f-UU-JAZ" id="brW-vc-xQn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Bj-zj-STE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-538.39999999999998" y="956.67166416791611"/>
         </scene>
         <!--Speech Auto Input View Controller-->
         <scene sceneID="WBy-UR-TKc">

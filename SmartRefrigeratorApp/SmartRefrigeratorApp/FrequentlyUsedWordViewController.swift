@@ -32,9 +32,8 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         existKeywordTable.dataSource = self
         existKeywordTable.delegate = self
         keywordTextField.delegate = self
-        let realm = try! Realm()
-        
-        keywordArray.append(newKeyword)
+        readFromRealm()
+//        keywordArray.append(newKeyword)
     }
 
     @IBAction func AddButton(_ sender: Any) {
@@ -127,23 +126,27 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         self.keywordArray[destinationIndexPath.row] = tmpKeywordItem
     }
     
+    func readFromRealm() {
+        let realm = try! Realm()
+        let oldKeywordList = realm.objects(Keyword.self).filter("priority < 10")
+        for item in 0...oldKeywordList.count {
+            let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type)
+            self.keywordArray.append(oldKeyword)
+        }
+    }
+    
     func writeIntoRealm() {
         let realm = try! Realm()
         try! realm.write {
+            var i:Int = 1
             for item in keywordArray {
-                print("Adding: " + item.name!)
-                if (item.type == "Food") {
-                    let newFoodKeyword = FoodKeyword()
-                    newFoodKeyword.foodName = item.name
-                    newFoodKeyword.priority = 1
-                    realm.add(newFoodKeyword)
-                }
-                else {
-                    let newUnitKeyword = UnitKeyword()
-                    newUnitKeyword.unitName = item.name
-                    newUnitKeyword.priority = 1
-                    realm.add(newUnitKeyword)
-                }
+                print("Adding: " + item.name! + ", p=" + String(i))
+                let newKeywordToRealm = Keyword()
+                newKeywordToRealm.type = item.type
+                newKeywordToRealm.name = item.name
+                newKeywordToRealm.priority = i
+                realm.add(newKeywordToRealm)
+                i += 1
             }
         }
     }

@@ -24,10 +24,11 @@ class User: Object {
 
 // Mark: Keyword
 class Keyword: Object {
-    var type: String?
-    var priority: Int?
+    dynamic var type: String?
+    dynamic var priority = 99
+    dynamic var name: String?
 }
-
+/*
 class FoodKeyword: Keyword {
     var foodName: String?
 }
@@ -39,3 +40,4 @@ class UnitKeyword: Keyword {
 class QuantityKeyword: Keyword {
     var quantityName: String?
 }
+*/

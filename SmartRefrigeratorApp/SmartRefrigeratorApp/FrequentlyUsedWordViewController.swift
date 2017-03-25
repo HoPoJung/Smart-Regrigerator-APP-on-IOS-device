@@ -21,8 +21,9 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     struct keyword {
         var name: String?
         var type: String?
+        var isExisted: Bool?
     }
-    var newKeyword = keyword(name: "New", type: "Food")
+    var newKeyword = keyword(name: "New", type: "Food", isExisted: false)
     var keywordArray: [keyword] = []
     
     override func viewDidLoad() {
@@ -34,7 +35,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         keywordTextField.delegate = self
         readFromRealm()
 //        keywordArray.append(newKeyword)
-        self.existKeywordTable.reloadData()
+        existKeywordTable.reloadData()
     }
 
     @IBAction func AddButton(_ sender: Any) {
@@ -129,16 +130,18 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     
     func readFromRealm() {
         let realm = try! Realm()
-        let oldKeywordList = realm.objects(Keyword.self).filter("priority < 10")
+        let oldKeywordList = realm.objects(Keyword.self)
         for item in 0...(oldKeywordList.count-1) {
-            let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type)
+            let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type, isExisted: true)
             self.keywordArray.append(oldKeyword)
         }
     }
     
     func writeIntoRealm() {
         let realm = try! Realm()
+        let oldKeywordList = realm.objects(Keyword.self)
         try! realm.write {
+            realm.delete(oldKeywordList)
             var i:Int = 1
             for item in keywordArray {
                 print("Adding: " + item.name! + ", p=" + String(i))

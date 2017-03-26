@@ -26,48 +26,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     
     var newKeyword = keyword(name: "New", type: "Food", isExisted: false)
     var keywordArray: [keyword] = []
-
     
-    var notificationToken: NotificationToken!
-    var realm: Realm!
-    
-    
-    func setupRealm() {
-        let username = "Allen"
-        let password = "test"
-        SyncUser.logIn(with: .usernamePassword(username: username, password: password, register: false), server: URL(string: "http://127.0.0.1:9080")!) { user, error in
-            guard let user = user else {
-                fatalError(String(describing: error))
-            }
-            
-            DispatchQueue.main.async {
-                // Open Realm
-                let configuration = Realm.Configuration(
-                    syncConfiguration: SyncConfiguration(user: user, realmURL: URL(string: "realm://127.0.0.1:9080/~/realmtasks")!)
-                )
-                self.realm = try! Realm(configuration: configuration)
-                
-                // Show initial tasks
-                func updateList() {
-//                    if self.items.realm == nil, let list = self.realm.objects(TaskList.self).first {
-//                        self.items = list.items
-//                    }
-//                    self.tableView.reloadData()
-                }
-                updateList()
-                
-                // Notify us when Realm changes
-                self.notificationToken = self.realm.addNotificationBlock { _ in
-                    updateList()
-                }
-            }
-        }
-    }
-    
-    deinit {
-        notificationToken.stop()
-    }
- 
     override func viewDidLoad() {
         super.viewDidLoad()
         typePicker.dataSource = self

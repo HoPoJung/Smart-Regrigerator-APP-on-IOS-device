@@ -24,6 +24,13 @@ public class RecognitionController {
             self.expirationDate = expirationDate
             self.nextNode = nil
         }
+        
+        private init() {
+            self.quantity = 0
+            self.unit = ""
+            self.foodName = ""
+            self.expirationDate = nil
+        }
     }
     
     private var headNode: foodNode?
@@ -37,11 +44,13 @@ public class RecognitionController {
     private var inputState: Int?
     private var foodKeywordArray: [Keyword]
     private var unitKeywordArray: [Keyword]
+    private var newNode: foodNode?
     
     public init() {
         let firstNode = foodNode(quantity: 1, unit: "piece", foodName: "Nothing", expirationDate: Date())
         self.headNode = firstNode
         self.tailNode = firstNode
+        self.newNode = firstNode
         self.inputState = 1
         self.wordArray = []
         self.foodArray = []
@@ -53,12 +62,34 @@ public class RecognitionController {
     
     public func inputWord(newWord: String)->Bool{
         self.wordArray.append(newWord)
+        switch self.inputState! {
+        case 1:
+            if searchKeyword(newWord: newWord, fromArray: foodKeywordArray) {
+                self.newNode!.foodName = newWord
+                self.inputState = 2
+            }
+            else {
+                // pending to confirm
+            }
+        case 2:
         
+        case 3:
+        
+        case 4:
+            self.inputState = 1
+        default:
+            print("Input state error")
+        }
         return false
     }
     
-    private func searchKeyword(newWord: String) -> String{
-        return ""
+    private func searchKeyword(newWord: String, fromArray keywordArray: Array<Keyword>) -> Bool{
+        for item in keywordArray {
+            if newWord == item.name {
+                return true
+            }
+        }
+        return false
     }
     
     private func readFromRealm() {
@@ -68,7 +99,7 @@ public class RecognitionController {
             if (item.type == "Food") {
                 self.foodKeywordArray.append(item)
             }
-            else {
+            else { // item.type == "Unit"
                 self.unitKeywordArray.append(item)
             }
         }

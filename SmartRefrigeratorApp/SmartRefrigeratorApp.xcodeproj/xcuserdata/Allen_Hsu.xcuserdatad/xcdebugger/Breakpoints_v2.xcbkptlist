@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SmartRefrigeratorApp/FrequentlyUsedWordViewController.swift"
-            timestampString = "511801198.827339"
+            timestampString = "512122238.312255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "editTableButton(_:)"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "readFromRealm()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SmartRefrigeratorApp/FrequentlyUsedWordViewController.swift"
-            timestampString = "511801198.827339"
+            timestampString = "512122238.312255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "editTableButton(_:)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "readFromRealm()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

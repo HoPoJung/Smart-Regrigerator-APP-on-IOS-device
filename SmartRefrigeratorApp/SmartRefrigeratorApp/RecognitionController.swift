@@ -57,7 +57,7 @@ public class RecognitionController {
         self.foodKeywordArray = []
         self.unitKeywordArray = []
         readFromRealm()
-        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     public func inputWord(newWord: String)->Bool{
@@ -71,10 +71,11 @@ public class RecognitionController {
             else {
                 // pending to confirm
             }
-        case 2:
-        
-        case 3:
-        
+//        case 2:
+//            
+//        case 3:
+//            if searchKeyword(newWord: newWord, fromArray: unitKeywordArray)
+//
         case 4:
             self.inputState = 1
         default:

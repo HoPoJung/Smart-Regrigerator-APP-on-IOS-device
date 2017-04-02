@@ -27,6 +27,7 @@ class Keyword: Object {
     dynamic var type: String?
     dynamic var priority = 99
     dynamic var name: String?
+    dynamic var multiplier = 1
 }
 /*
 class FoodKeyword: Keyword {

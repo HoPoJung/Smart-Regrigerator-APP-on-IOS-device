@@ -14,17 +14,20 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var existKeywordTable: UITableView!
+    @IBOutlet weak var multiplierTextField: UITextField!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
+
     
-    let typePickerData = ["Food", "Unit"]
+    let typePickerData = ["Food", "Unit", "Multiplier"]
     
     struct keyword {
         var name: String?
         var type: String?
+        var multiplier: Int?
         var isExisted: Bool?
     }
     
-    var newKeyword = keyword(name: "New", type: "Food", isExisted: false)
+    var newKeyword = keyword(name: "New", type: "Food", multiplier: 1, isExisted: false)
     var keywordArray: [keyword] = []
     
     override func viewDidLoad() {
@@ -34,6 +37,8 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         existKeywordTable.dataSource = self
         existKeywordTable.delegate = self
         keywordTextField.delegate = self
+        multiplierTextField.delegate = self
+        multiplierTextField.isEnabled = false
         readFromRealm()
 //        keywordArray.append(newKeyword)
         existKeywordTable.reloadData()
@@ -41,7 +46,8 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
 
     @IBAction func AddButton(_ sender: Any) {
         if (keywordTextField.text != "") {
-            self.newKeyword.name = keywordTextField.text
+            self.newKeyword.name = self.keywordTextField.text
+            self.newKeyword.multiplier = Int(self.multiplierTextField.text!)
             keywordTextField.text = ""
             self.keywordArray.append(newKeyword)
             print("Add new keyword: " + self.newKeyword.name! + ", type: " + self.newKeyword.type!)
@@ -84,10 +90,17 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.newKeyword.type = typePickerData[row]
+        if (typePickerData[row] == "Food") {
+            self.multiplierTextField.isEnabled = false
+        }
+        else {
+            self.multiplierTextField.isEnabled = true
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         keywordTextField.resignFirstResponder()
+        multiplierTextField.resignFirstResponder()
         return false
     }
     
@@ -97,7 +110,10 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
-        cell.textLabel?.text = self.keywordArray[indexPath.row].name! + " (" + self.keywordArray[indexPath.row].type! + ")"
+        let index = indexPath.row
+        cell.textLabel?.text = self.keywordArray[index].name! + " (" + self.keywordArray[index].type! + ")"
+        cell.detailTextLabel?.text = String(self.keywordArray[index].multiplier!)
+        
         return cell
     }
     
@@ -130,16 +146,18 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     }
     
     func readFromRealm() {
-        let realm = try! Realm()
-        let oldKeywordList = realm.objects(Keyword.self)
-        for item in 0...(oldKeywordList.count-1) {
-            let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type, isExisted: true)
-            self.keywordArray.append(oldKeyword)
+        let realm = realmWithPath()
+        if (realm.objects(Keyword.self).count > 0) {
+            let oldKeywordList = realm.objects(Keyword.self)
+            for item in 0...(oldKeywordList.count-1) {
+                let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type, multiplier: oldKeywordList[item].multiplier, isExisted: true)
+                self.keywordArray.append(oldKeyword)
+            }
         }
     }
     
     func writeIntoRealm() {
-        let realm = try! Realm()
+        let realm = realmWithPath()
         let oldKeywordList = realm.objects(Keyword.self)
         try! realm.write {
             realm.delete(oldKeywordList)
@@ -150,20 +168,24 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
                 newKeywordToRealm.type = item.type
                 newKeywordToRealm.name = item.name
                 newKeywordToRealm.priority = i
+                newKeywordToRealm.multiplier = item.multiplier!
                 realm.add(newKeywordToRealm)
                 i += 1
             }
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    public class Constants {
+        public static var dev: Bool = true
     }
-    */
+    
+    func realmWithPath() -> Realm {
+        if Constants.dev {
+            let realmDatabaseFileURL = URL(fileURLWithPath: "/Users/Allen_Hsu/Documents/ios workspace/Swift/Smart-Regrigerator-APP-on-IOS-device/SRDatabase/SRDatabase.realm")
+            return try! Realm(fileURL: realmDatabaseFileURL)
+        } else {
+            return try! Realm()
+        }
+    }
 
 }

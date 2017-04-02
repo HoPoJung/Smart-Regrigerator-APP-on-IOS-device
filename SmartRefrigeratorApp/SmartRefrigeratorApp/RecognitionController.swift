@@ -44,6 +44,7 @@ public class RecognitionController {
     private var inputState: Int?
     private var foodKeywordArray: [Keyword]
     private var unitKeywordArray: [Keyword]
+    private var quantityKeywordArray: [Keyword]
     private var newNode: foodNode?
     
     public init() {
@@ -71,11 +72,15 @@ public class RecognitionController {
             else {
                 // pending to confirm
             }
-//        case 2:
-//            
-//        case 3:
-//            if searchKeyword(newWord: newWord, fromArray: unitKeywordArray)
-//
+        case 2:
+            if searchKeyword(newWord: newWord, fromArray: quantityKeywordArray) {
+                self.newNode!.quantity =
+            }
+        case 3:
+            if searchKeyword(newWord: newWord, fromArray: unitKeywordArray) {
+                
+            }
+
         case 4:
             self.inputState = 1
         default:
@@ -100,9 +105,13 @@ public class RecognitionController {
             if (item.type == "Food") {
                 self.foodKeywordArray.append(item)
             }
-            else { // item.type == "Unit"
+            else if (item.type == "Unit") {
                 self.unitKeywordArray.append(item)
             }
+            else if (item.type == "Quantity") {
+                self.quantityKeywordArray.append(item)
+            }
+            
         }
     }
 

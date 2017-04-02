@@ -10,7 +10,8 @@ import UIKit
 import RealmSwift
 
 class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-
+    
+    //MARK: Init
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var existKeywordTable: UITableView!
@@ -18,7 +19,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
 
     
-    let typePickerData = ["Food", "Unit", "Multiplier"]
+    let typePickerData = ["Food", "Unit", "Quantity"]
     
     struct keyword {
         var name: String?
@@ -44,6 +45,7 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         existKeywordTable.reloadData()
     }
 
+    // MARK: IBActions
     @IBAction func AddButton(_ sender: Any) {
         if (keywordTextField.text != "") {
             self.newKeyword.name = self.keywordTextField.text
@@ -71,11 +73,9 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
             self.existKeywordTable.reloadData()
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    
+    // MARK: pickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -98,12 +98,14 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         }
     }
     
+    // MARK: textField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         keywordTextField.resignFirstResponder()
         multiplierTextField.resignFirstResponder()
         return false
     }
     
+    // MARK: tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.keywordArray.count
     }
@@ -145,6 +147,8 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         self.keywordArray[destinationIndexPath.row] = tmpKeywordItem
     }
     
+    
+    // MARK: RealmFunctions
     func readFromRealm() {
         let realm = realmWithPath()
         if (realm.objects(Keyword.self).count > 0) {
@@ -182,10 +186,15 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     func realmWithPath() -> Realm {
         if Constants.dev {
             let realmDatabaseFileURL = URL(fileURLWithPath: "/Users/Allen_Hsu/Documents/ios workspace/Swift/Smart-Regrigerator-APP-on-IOS-device/SRDatabase/SRDatabase.realm")
-            return try! Realm(fileURL: realmDatabaseFileURL)
-        } else {
-            return try! Realm()
+            do {
+                let tempRealm = try Realm(fileURL: realmDatabaseFileURL)
+                return tempRealm
+            } catch {
+                print("File error when accessing Realm.")
+            }
         }
+        
+        return try! Realm()
     }
 
 }

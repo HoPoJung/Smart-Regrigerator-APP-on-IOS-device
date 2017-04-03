@@ -57,31 +57,32 @@ public class RecognitionController {
         self.foodArray = []
         self.foodKeywordArray = []
         self.unitKeywordArray = []
+        self.quantityKeywordArray = []
         readFromRealm()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     public func inputWord(newWord: String)->Bool{
         self.wordArray.append(newWord)
+        var resultWord: Keyword?
         switch self.inputState! {
         case 1:
-            if searchKeyword(newWord: newWord, fromArray: foodKeywordArray) {
-                self.newNode!.foodName = newWord
-                self.inputState = 2
-            }
-            else {
-                // pending to confirm
-            }
+            resultWord = searchKeyword(newWord: newWord, fromArray: foodKeywordArray)
+            self.newNode!.foodName = resultWord!.name
+            self.inputState = 2
+            
         case 2:
-            if searchKeyword(newWord: newWord, fromArray: quantityKeywordArray) {
-                self.newNode!.quantity =
-            }
+            resultWord = searchKeyword(newWord: newWord, fromArray: quantityKeywordArray)
+            self.newNode!.quantity = resultWord!.multiplier
+            self.inputState = 3
+            
         case 3:
-            if searchKeyword(newWord: newWord, fromArray: unitKeywordArray) {
-                
-            }
-
+            resultWord = searchKeyword(newWord: newWord, fromArray: unitKeywordArray)
+            self.newNode!.unit = resultWord!.name
+            self.inputState = 4
+            
         case 4:
+            // considering not to use speech recognition for expiration date info.
             self.inputState = 1
         default:
             print("Input state error")
@@ -89,13 +90,16 @@ public class RecognitionController {
         return false
     }
     
-    private func searchKeyword(newWord: String, fromArray keywordArray: Array<Keyword>) -> Bool{
+    private func searchKeyword(newWord: String, fromArray keywordArray: Array<Keyword>) -> Keyword{
         for item in keywordArray {
             if newWord == item.name {
-                return true
+                return item
             }
         }
-        return false
+        let pendingNewKeyword = Keyword()
+        pendingNewKeyword.type = "New"
+        pendingNewKeyword.name = newWord
+        return pendingNewKeyword
     }
     
     private func readFromRealm() {

@@ -3,6 +3,7 @@
 .DS_Store
 *.plist
 *.swp
+*.xcbkptlist
 # Xcode
 #
 SmartRefrigeratorApp/Info.plist

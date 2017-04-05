@@ -10,6 +10,7 @@ SmartRefrigeratorAppTests/Info.plist
 SmartRefrigeratorAppUITests/Info.plist
 SmartRegrigeratorApp.xcodeproj/
 project.pbxproj
+SmartRefrigeratorApp/SmartRefrigeratorApp.xcodeproj/xcuserdata/Allen_Hsu.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 build/
 *.pbxuser
 !default.pbxuser

@@ -26,6 +26,7 @@
 		E433AF501E55A29000F7914D /* RecognitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E433AF4F1E55A29000F7914D /* RecognitionController.swift */; };
 		E44E87211E536BFF00C5E767 /* SpeechAutoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E87201E536BFF00C5E767 /* SpeechAutoInputViewController.swift */; };
 		E477EFEC1E65C23000CD9091 /* KeywordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477EFEB1E65C23000CD9091 /* KeywordDatabase.swift */; };
+		E4DCF7121E9537A500C2D8CD /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCF7111E9537A500C2D8CD /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		E433AF4F1E55A29000F7914D /* RecognitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionController.swift; sourceTree = "<group>"; };
 		E44E87201E536BFF00C5E767 /* SpeechAutoInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechAutoInputViewController.swift; sourceTree = "<group>"; };
 		E477EFEB1E65C23000CD9091 /* KeywordDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordDatabase.swift; sourceTree = "<group>"; };
+		E4DCF7111E9537A500C2D8CD /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				E433AF4F1E55A29000F7914D /* RecognitionController.swift */,
 				E477EFEB1E65C23000CD9091 /* KeywordDatabase.swift */,
 				E422156C1E7530ED00E48159 /* FrequentlyUsedWordViewController.swift */,
+				E4DCF7111E9537A500C2D8CD /* Constant.swift */,
 				E244EA3C1E4865840019D7D6 /* Assets.xcassets */,
 				E244EA3E1E4865840019D7D6 /* LaunchScreen.storyboard */,
 				E244EA411E4865840019D7D6 /* Info.plist */,
@@ -329,6 +332,7 @@
 			files = (
 				E244EA351E4865840019D7D6 /* ViewController.swift in Sources */,
 				E422156D1E7530ED00E48159 /* FrequentlyUsedWordViewController.swift in Sources */,
+				E4DCF7121E9537A500C2D8CD /* Constant.swift in Sources */,
 				E244EA3B1E4865840019D7D6 /* SmartRefrigeratorApp.xcdatamodeld in Sources */,
 				E44E87211E536BFF00C5E767 /* SpeechAutoInputViewController.swift in Sources */,
 				E433AF501E55A29000F7914D /* RecognitionController.swift in Sources */,

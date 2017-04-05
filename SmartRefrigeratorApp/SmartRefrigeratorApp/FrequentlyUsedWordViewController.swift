@@ -179,13 +179,11 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         }
     }
     
-    public class Constants {
-        public static var dev: Bool = true
-    }
     
     func realmWithPath() -> Realm {
         if Constants.dev {
             let realmDatabaseFileURL = URL(fileURLWithPath: "/Users/Allen_Hsu/Documents/ios workspace/Swift/Smart-Regrigerator-APP-on-IOS-device/SRDatabase/SRDatabase.realm")
+            // CAUTION!! You have to change this or change the Constants value to false when using different computer.
             do {
                 let tempRealm = try Realm(fileURL: realmDatabaseFileURL)
                 return tempRealm

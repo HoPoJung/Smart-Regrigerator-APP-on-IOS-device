@@ -10,64 +10,27 @@ import UIKit
 import RealmSwift
 
 class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-
+    
+    //MARK: Init
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var existKeywordTable: UITableView!
+    @IBOutlet weak var multiplierTextField: UITextField!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
+
     
-    let typePickerData = ["Food", "Unit"]
+    let typePickerData = ["Food", "Unit", "Quantity"]
     
     struct keyword {
         var name: String?
         var type: String?
+        var multiplier: Int?
         var isExisted: Bool?
     }
     
-    var newKeyword = keyword(name: "New", type: "Food", isExisted: false)
+    var newKeyword = keyword(name: "New", type: "Food", multiplier: 1, isExisted: false)
     var keywordArray: [keyword] = []
-
-    /*
-    var notificationToken: NotificationToken!
-    var realm: Realm!
     
-    
-    func setupRealm() {
-        let username = "Allen"
-        let password = "test"
-        SyncUser.logIn(with: .usernamePassword(username: username, password: password, register: false), server: URL(string: "http://127.0.0.1:9080")!) { user, error in
-            guard let user = user else {
-                fatalError(String(describing: error))
-            }
-            
-            DispatchQueue.main.async {
-                // Open Realm
-                let configuration = Realm.Configuration(
-                    syncConfiguration: SyncConfiguration(user: user, realmURL: URL(string: "realm://127.0.0.1:9080/~/realmtasks")!)
-                )
-                self.realm = try! Realm(configuration: configuration)
-                
-                // Show initial tasks
-                func updateList() {
-                    if self.items.realm == nil, let list = self.realm.objects(TaskList.self).first {
-                        self.items = list.items
-                    }
-                    self.tableView.reloadData()
-                }
-                updateList()
-                
-                // Notify us when Realm changes
-                self.notificationToken = self.realm.addNotificationBlock { _ in
-                    updateList()
-                }
-            }
-        }
-    }
-    
-    deinit {
-        notificationToken.stop()
-    }
-    */
     override func viewDidLoad() {
         super.viewDidLoad()
         typePicker.dataSource = self
@@ -75,14 +38,18 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         existKeywordTable.dataSource = self
         existKeywordTable.delegate = self
         keywordTextField.delegate = self
+        multiplierTextField.delegate = self
+        multiplierTextField.isEnabled = false
         readFromRealm()
 //        keywordArray.append(newKeyword)
         existKeywordTable.reloadData()
     }
 
+    // MARK: IBActions
     @IBAction func AddButton(_ sender: Any) {
         if (keywordTextField.text != "") {
-            self.newKeyword.name = keywordTextField.text
+            self.newKeyword.name = self.keywordTextField.text
+            self.newKeyword.multiplier = Int(self.multiplierTextField.text!)
             keywordTextField.text = ""
             self.keywordArray.append(newKeyword)
             print("Add new keyword: " + self.newKeyword.name! + ", type: " + self.newKeyword.type!)
@@ -106,11 +73,9 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
             self.existKeywordTable.reloadData()
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    
+    // MARK: pickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -125,20 +90,32 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.newKeyword.type = typePickerData[row]
+        if (typePickerData[row] == "Food") {
+            self.multiplierTextField.isEnabled = false
+        }
+        else {
+            self.multiplierTextField.isEnabled = true
+        }
     }
     
+    // MARK: textField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         keywordTextField.resignFirstResponder()
+        multiplierTextField.resignFirstResponder()
         return false
     }
     
+    // MARK: tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.keywordArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
-        cell.textLabel?.text = self.keywordArray[indexPath.row].name! + " (" + self.keywordArray[indexPath.row].type! + ")"
+        let index = indexPath.row
+        cell.textLabel?.text = self.keywordArray[index].name! + " (" + self.keywordArray[index].type! + ")"
+        cell.detailTextLabel?.text = String(self.keywordArray[index].multiplier!)
+        
         return cell
     }
     
@@ -170,19 +147,21 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
         self.keywordArray[destinationIndexPath.row] = tmpKeywordItem
     }
     
+    
+    // MARK: RealmFunctions
     func readFromRealm() {
-        let realm = try! Realm()
-        let oldKeywordList = realm.objects(Keyword.self)
-        for item in 0...(oldKeywordList.count-1) {
-            let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type, isExisted: true)
-            self.keywordArray.append(oldKeyword)
+        let realm = realmWithPath()
+        if (realm.objects(Keyword.self).count > 0) {
+            let oldKeywordList = realm.objects(Keyword.self)
+            for item in 0...(oldKeywordList.count-1) {
+                let oldKeyword = keyword(name:oldKeywordList[item].name, type:oldKeywordList[item].type, multiplier: oldKeywordList[item].multiplier, isExisted: true)
+                self.keywordArray.append(oldKeyword)
+            }
         }
     }
     
     func writeIntoRealm() {
-//        let configuration = Realm.Configuration(
-//            syncConfiguration: SyncConfiguration(user: user, realmURL: URL(string: "realm://127.0.0.1:9080/~/realmtasks")!)
-        let realm = try! Realm()
+        let realm = realmWithPath()
         let oldKeywordList = realm.objects(Keyword.self)
         try! realm.write {
             realm.delete(oldKeywordList)
@@ -193,20 +172,27 @@ class FrequentlyUsedWordViewController: UIViewController, UIPickerViewDataSource
                 newKeywordToRealm.type = item.type
                 newKeywordToRealm.name = item.name
                 newKeywordToRealm.priority = i
+                newKeywordToRealm.multiplier = item.multiplier!
                 realm.add(newKeywordToRealm)
                 i += 1
             }
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func realmWithPath() -> Realm {
+        if Constants.dev {
+            let realmDatabaseFileURL = URL(fileURLWithPath: "/Users/Allen_Hsu/Documents/ios workspace/Swift/Smart-Regrigerator-APP-on-IOS-device/SRDatabase/SRDatabase.realm")
+            // CAUTION!! You have to change this or change the Constants value to false when using different computer.
+            do {
+                let tempRealm = try Realm(fileURL: realmDatabaseFileURL)
+                return tempRealm
+            } catch {
+                print("File error when accessing Realm.")
+            }
+        }
+        
+        return try! Realm()
     }
-    */
 
 }

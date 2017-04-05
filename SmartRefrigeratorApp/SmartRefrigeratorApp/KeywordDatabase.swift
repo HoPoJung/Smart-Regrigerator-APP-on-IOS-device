@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-// Mark: User
+// MARK: User
 class Food: Object {
     var quantity: Int?
     dynamic var unit: String?
@@ -22,11 +22,12 @@ class User: Object {
     let foodList = List<Food>()
 }
 
-// Mark: Keyword
+// MARK: Keyword
 class Keyword: Object {
     dynamic var type: String?
     dynamic var priority = 99
     dynamic var name: String?
+    dynamic var multiplier = 1
 }
 /*
 class FoodKeyword: Keyword {
